@@ -10,6 +10,8 @@ datagroup: new_project_default_datagroup {
 
 persist_with: new_project_default_datagroup
 
+# fiscal_month_offset: 1
+
 explore: connection_reg_r3 {}
 
 explore: derived_test_table_3_20190510 {}
@@ -21,6 +23,19 @@ explore: events {
     relationship: many_to_one
   }
 }
+
+#test to copy explore
+
+explore: events_2 {
+  from: events
+  join: users {
+    type: left_outer
+    sql_on: ${events_2.user_id} = ${users.id} ;;
+    relationship: many_to_one
+  }
+}
+
+
 
 explore: inventory_items {
   join: products {
@@ -80,6 +95,9 @@ explore: user_data {
 #test adding dt
 explore: sql_runner_query {}
 
+#test weird extend
+explore: ordersextend {}
+
 
 explore: users {}
 
@@ -90,6 +108,8 @@ explore: zozo_table_20190507 {}
 explore: zozo_table_20190508 {}
 
 explore: zozo_table_null {}
+
+explore: ordersextest {}
 
 access_grant: access_grant_test {
   user_attribute: id

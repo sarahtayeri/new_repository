@@ -14,6 +14,13 @@ view: products {
 
   dimension: category {
     type: string
+    #test group label
+    group_label:
+    " {% if _explore._name=='Products' %}
+      Product group label
+      {% elsif _explore._name=='Order Items' %}
+      Order Items group label
+      {% endif %} "
     sql: ${TABLE}.category ;;
   }
 
@@ -62,6 +69,50 @@ view: products {
     drill_fields: [id, item_name, inventory_items.count]
   }
 # ##
+
+measure: test {
+  type: number
+  sql: ${count}-${count_both} ;;
+}
+
+measure: test_count {
+  type: count
+  filters: {
+    field: brand
+    value: "By the Sword^, Inc."
+  }
+}
+
+parameter: calc_selector {
+  description: "To be used with liquid price measure"
+  type: unquoted
+  allowed_value: {
+    value: "SUM"
+    label: "Sum of retail price"
+  }
+  allowed_value: {
+    value: "AVG"
+    label: "Average of retail price"
+  }
+  allowed_value: {
+    value: "MAX"
+    label: "Max. retail price"
+  }
+  allowed_value: {
+    value: "MIN"
+    label: "Min. retail price"
+  }
+}
+
+measure: liquid_price_measure {
+  type: number
+  value_format_name: usd
+  sql: {% parameter calc_selector %}(${retail_price}) ;;
+}
+
+
+
+
 
 
   measure: sum_rank {

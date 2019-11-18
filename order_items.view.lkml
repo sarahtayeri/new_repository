@@ -50,6 +50,11 @@ view: order_items {
     sql: ${id} ;;
   }
 
+  measure: test_typenum {
+    type: number
+    sql: ${lifetime_orders}*2 ;;
+  }
+
   measure: repeat_customer {
     type: yesno
     sql: ${lifetime_orders}>1 ;;

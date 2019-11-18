@@ -21,6 +21,21 @@ view: events {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension_group: created_ending {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: DATE_ADD(${TABLE}.created_at, INTERVAL 7 DAY) ;;
+  }
+
+
   dimension: type_id {
     type: number
     sql: ${TABLE}.type_id ;;
@@ -41,4 +56,13 @@ view: events {
     type: count
     drill_fields: [id, users.first_name, users.id, users.last_name]
   }
+
+  measure: count_filtered {
+    type: count
+    filters: {
+      field: created_date
+      value: "last month"
+    }
+  }
+
 }

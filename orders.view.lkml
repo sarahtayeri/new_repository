@@ -8,18 +8,23 @@ view: orders {
   }
 
   dimension_group: created {
+    hidden: yes
     type: time
     timeframes: [
       raw,
       time,
       date,
+      day_of_week,
       week,
       month,
       quarter,
+      fiscal_quarter,
       year
     ]
     sql: ${TABLE}.created_at ;;
   }
+
+
 
   dimension: status {
     type: string
