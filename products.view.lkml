@@ -111,6 +111,16 @@ measure: liquid_price_measure {
 }
 
 
+# dimension: testing {
+#   type: string
+#   sql: case when ${id}>${sum_rank} then "ok" else "not ok" end;;
+# }
+
+
+# dimension: sljfal {
+#   type: number
+#   sql: ${sum_rank}-${id} ;;
+# }
 
 
 

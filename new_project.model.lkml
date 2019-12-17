@@ -46,6 +46,7 @@ explore: inventory_items {
 }
 
 explore: order_items {
+  # required_joins: [orders]
   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
@@ -72,6 +73,7 @@ explore: order_items {
 }
 
 
+
 explore: orders {
   join: users {
     type: left_outer
@@ -79,6 +81,16 @@ explore: orders {
     relationship: many_to_one
   }
 }
+
+explore: orders2 {
+  from: orders
+}
+
+# explore: user_data2 {
+#   from: user_data
+#   extends: [order_items]
+# }
+
 
 explore: products {}
 

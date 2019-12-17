@@ -29,19 +29,31 @@ view: orders {
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+    html:
+    {% if value == 'pending' %}
+    <p style="color: red">{{value}}</p>
+    {% else %}
+    <p style="color: green">{{value}}</p>
+    {% endif %}
+    ;;
   }
 
   dimension: user_id {
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
-    required_access_grants: [access_grant_test]
+    #required_access_grants: [access_grant_test]
   }
 
   measure: sum_user_id {
     type: sum
     sql: ${user_id} ;;
   }
+
+#   measure: testingdivision {
+#     type: number
+#     sql: ${products.retail_price}/${count} ;;
+#   }
 
 
   measure: count {
