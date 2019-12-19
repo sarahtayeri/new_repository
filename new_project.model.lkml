@@ -2,6 +2,7 @@ connection: "thelook"
 
 # include all the views
 include: "*.view"
+include: "testforbeta.dashboard"
 
 datagroup: new_project_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
