@@ -43,6 +43,9 @@ view: orders {
     # hidden: yes
     sql: ${TABLE}.user_id ;;
     #required_access_grants: [access_grant_test]
+#     link: {
+#       url: "https://www.google.com/search?q=12"
+#     }
   }
 
   measure: sum_user_id {

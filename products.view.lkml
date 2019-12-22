@@ -10,17 +10,20 @@ view: products {
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
+    link: {
+      url: "http://www.google.com/search?q={{ value }}"
+    }
   }
 
   dimension: category {
     type: string
     #test group label
-    group_label:
-    " {% if _explore._name=='Products' %}
-      Product group label
-      {% elsif _explore._name=='Order Items' %}
-      Order Items group label
-      {% endif %} "
+#     group_label:
+#     " {% if _explore._name=='Products' %}
+#       Product group label
+#       {% elsif _explore._name=='Order Items' %}
+#       Order Items group label
+#       {% endif %} "
     sql: ${TABLE}.category ;;
   }
 
