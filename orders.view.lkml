@@ -7,6 +7,21 @@ view: orders {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: testnulls {
+    type: number
+    sql: CASE WHEN ${id}<10 THEN NULL ELSE ${id} END ;;
+  }
+
+  filter: cal {
+    type: date
+  }
+
+  parameter: cal2 {
+    type: date
+  }
+
+
+
   dimension_group: created {
     hidden: yes
     type: time
@@ -43,9 +58,6 @@ view: orders {
     # hidden: yes
     sql: ${TABLE}.user_id ;;
     #required_access_grants: [access_grant_test]
-#     link: {
-#       url: "https://www.google.com/search?q=12"
-#     }
   }
 
   measure: sum_user_id {

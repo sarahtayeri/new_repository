@@ -7,6 +7,16 @@ view: order_items {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: testnumber {
+    type: number
+    sql: 2 ;;
+  }
+
+  dimension: test_mult {
+    type: number
+    sql: ${id}*${testnumber} ;;
+  }
+
   dimension: inventory_item_id {
     type: number
     # hidden: yes
@@ -36,6 +46,12 @@ view: order_items {
   dimension: sale_price {
     type: number
     sql: ${TABLE}.sale_price ;;
+  }
+
+  dimension: testing_for_background {
+    type: string
+    sql: "this is a test" ;;
+    html: <p style="color: black; background-color: lightblue; font-size:100%; text-align:center">{{ rendered_value }}</p>;;
   }
 
   measure: count {

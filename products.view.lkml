@@ -5,25 +5,33 @@ view: products {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    # link: {
+    #   url: "https://www.google.com/search?q={{ value }}"
+    #   label: "This is a link to google"
+    # }
   }
 
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
-    link: {
-      url: "http://www.google.com/search?q={{ value }}"
+  }
+
+  dimension: filter_thing {
+    type: string
+    case: {
+      when: {
+        sql: ${brand}="American Fighter" OR ${brand}="American Eagle" ;;
+        label: "American"
+      }
+      when: {
+        sql: ${brand}="Ames" ;;
+        label: "Ames filter"
+      }
     }
   }
 
   dimension: category {
     type: string
-    #test group label
-#     group_label:
-#     " {% if _explore._name=='Products' %}
-#       Product group label
-#       {% elsif _explore._name=='Order Items' %}
-#       Order Items group label
-#       {% endif %} "
     sql: ${TABLE}.category ;;
   }
 
@@ -106,6 +114,7 @@ parameter: calc_selector {
     label: "Min. retail price"
   }
 }
+
 
 measure: liquid_price_measure {
   type: number
