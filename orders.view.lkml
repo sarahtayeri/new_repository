@@ -39,6 +39,11 @@ view: orders {
     sql: ${TABLE}.created_at ;;
   }
 
+#   dimension_group: created {
+#     type: time
+#     timeframes: [date]
+#     sql: ${TABLE}.created_at ;;
+#   }
 
 
   dimension: status {

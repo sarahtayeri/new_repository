@@ -40,6 +40,21 @@ view: products {
     sql: ${TABLE}.department ;;
   }
 
+  dimension: dept2 {
+    case: {
+      when: {
+        sql: ${department}="Men";;
+        label: "Men2"
+      }
+      when: {
+        sql: ${department}="Women" ;;
+        label: "Women2"
+      }
+    }
+  }
+
+
+
   dimension: item_name {
     type: string
     sql: ${TABLE}.item_name ;;
@@ -59,6 +74,21 @@ view: products {
     type: string
     sql: ${TABLE}.sku ;;
   }
+
+  measure: count_d {
+    type: count_distinct
+    sql: ${id} ;;
+  }
+
+  measure: example {
+    type: number
+    sql: ${rank}*${count_d} ;;
+  }
+
+#   measure: example_2 {
+#     type: sum
+#     sql: ${example} ;;
+#   }
 
   measure: count {
     type: count
