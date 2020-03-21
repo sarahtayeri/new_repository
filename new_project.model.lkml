@@ -2,7 +2,7 @@ connection: "thelook"
 
 # include all the views
 include: "*.view"
-include: "testforbeta.dashboard"
+include: "*.dashboard"
 
 datagroup: new_project_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -47,6 +47,7 @@ explore: inventory_items {
 }
 
 explore: order_items {
+  sql_always_where: ${users.first_name} NOT LIKE '%Sarah%' ;;
   # required_joins: [orders]
   join: orders {
     type: left_outer

@@ -15,6 +15,7 @@ view: inventory_items {
 
   dimension_group: created {
     type: time
+    datatype: datetime
     timeframes: [
       raw,
       time,
@@ -26,6 +27,7 @@ view: inventory_items {
     ]
     sql: ${TABLE}.created_at ;;
   }
+
 
   dimension: product_id {
     type: number

@@ -9,6 +9,7 @@ view: events {
 
   dimension_group: created {
     type: time
+    datatype: datetime
     timeframes: [
       raw,
       time,

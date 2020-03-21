@@ -29,8 +29,10 @@ view: order_items {
     sql: ${TABLE}.order_id ;;
   }
 
+
   dimension_group: returned {
     type: time
+    datatype: datetime
     timeframes: [
       raw,
       time,
@@ -44,6 +46,7 @@ view: order_items {
   }
 
   dimension: sale_price {
+    label: "test for a label"
     type: number
     sql: ${TABLE}.sale_price ;;
   }
@@ -64,7 +67,17 @@ view: order_items {
   measure: lifetime_orders {
     type: count_distinct
     sql: ${id} ;;
+    #drill_fields: [order_id]
   }
+
+ measure: filtered_meas {
+   type: count
+   filters: {
+    field: id
+    value: "100, 101, 102"
+   }
+ }
+
 
   measure: test_typenum {
     type: number

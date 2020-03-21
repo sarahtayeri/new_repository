@@ -23,8 +23,9 @@ view: orders {
 
 
   dimension_group: created {
-    hidden: yes
+    hidden: no
     type: time
+    datatype: datetime
     timeframes: [
       raw,
       time,
